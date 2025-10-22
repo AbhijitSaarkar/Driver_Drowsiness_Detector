@@ -1,0 +1,315 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1761046795.980373   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046795.984284   26290 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+W0000 00:00:1761046795.990532   26277 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046796.020641   26282 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046796.031163   26282 landmark_projection_calculator.cc:186] Using NORM_RECT without IMAGE_DIMENSIONS is only supported for the square ROI. Provide IMAGE_DIMENSIONS or use PROJECTION_MATRIX.
+I0000 00:00:1761046796.208738   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046796.210461   26302 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046796.219365   26297 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046796.256530   26293 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046796.285181   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046796.286687   26315 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046796.300225   26309 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046796.331529   26310 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046796.363837   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046796.365160   26326 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046796.368171   26321 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046796.393471   26316 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046796.415785   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046796.417111   26337 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046796.421612   26331 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046796.444792   26333 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046796.492097   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046796.494037   26353 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046796.497040   26346 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046796.516553   26346 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046796.621271   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046796.622814   26364 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046796.629581   26356 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046796.646994   26354 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046796.751666   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046796.753165   26375 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046796.755957   26371 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046796.782697   26365 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046796.885697   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046796.929289   26386 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046796.932907   26381 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046796.972149   26380 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046797.019732   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046797.021853   26397 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046797.025912   26390 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046797.046699   26389 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046797.155743   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046797.157634   26408 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046797.160137   26403 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046797.182349   26402 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046797.291418   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046797.293451   26419 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046797.296938   26415 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046797.315769   26414 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046797.423736   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046797.425453   26430 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046797.428011   26425 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046797.445380   26424 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046797.555693   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046797.557645   26441 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046797.561090   26438 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046797.579927   26435 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046797.687675   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046797.689694   26452 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046797.694938   26443 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046797.716045   26447 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046797.823848   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046797.825542   26463 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046797.828302   26453 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046797.850912   26454 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046797.956793   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046797.958821   26474 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046797.962249   26469 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046797.983495   26471 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046798.091825   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046798.093755   26485 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046798.096148   26475 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046798.126505   26480 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046798.224961   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046798.226880   26496 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046798.230868   26488 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046798.246627   26489 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046798.355821   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046798.357737   26507 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046798.360541   26501 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046798.380264   26499 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046798.491867   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046798.493673   26518 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046798.496351   26511 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046798.515075   26509 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046798.624090   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046798.626221   26529 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046798.629151   26525 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046798.649798   26520 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046798.759743   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046798.761363   26540 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046798.763916   26535 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046798.783682   26533 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046798.891816   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046798.893816   26551 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046798.896460   26546 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046798.922531   26541 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046799.023881   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046799.025702   26562 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046799.028263   26555 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046799.051418   26553 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046799.160369   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046799.162262   26573 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046799.168245   26569 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046799.179350   26567 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046799.287428   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046799.289265   26584 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046799.291958   26579 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046799.309565   26575 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046799.427759   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046799.430192   26595 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046799.432608   26589 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046799.450028   26590 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046799.559719   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046799.561810   26606 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046799.565367   26601 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046799.579382   26597 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046799.691829   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046799.694045   26617 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046799.697224   26607 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046799.708916   26614 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046799.827747   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046799.829662   26628 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046799.832478   26624 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046799.855285   26625 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046799.959744   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046799.961966   26639 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046799.964585   26634 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046799.983880   26633 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046800.095731   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046800.097451   26650 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046800.100382   26641 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046800.118493   26643 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046800.227850   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046800.229797   26661 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046800.232721   26653 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046800.251371   26656 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046800.359662   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046800.362037   26672 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046800.364602   26665 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046800.383717   26669 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046800.495711   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046800.497926   26683 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046800.500612   26678 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046800.519967   26677 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046800.627723   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046800.629713   26695 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046800.632468   26691 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046800.653760   26686 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046800.762305   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046800.764275   26706 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046800.766771   26702 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046800.786397   26701 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046800.895756   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046800.898030   26717 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046800.901297   26711 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046800.918607   26714 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046801.027711   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046801.029695   26728 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046801.032512   26725 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046801.052219   26720 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046801.163919   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046801.165925   26739 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046801.169391   26731 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046801.183052   26733 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046801.293118   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046801.295118   26750 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046801.301351   26747 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046801.331106   26741 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046801.433145   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046801.435513   26761 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046801.439627   26755 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046801.464042   26752 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046801.563787   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046801.565718   26772 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046801.568405   26769 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046801.588235   26763 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046801.695876   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046801.697689   26783 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046801.700717   26777 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046801.721758   26775 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046801.831811   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046801.833724   26794 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046801.837259   26787 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046801.860182   26791 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046801.963964   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046801.965963   26805 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046801.969095   26801 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046801.986534   26797 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046802.099995   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046802.101888   26816 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046802.104310   26806 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046802.130063   26807 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046802.231849   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046802.233789   26827 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046802.236601   26819 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046802.253913   26820 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046802.363776   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046802.365252   26838 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046802.367757   26835 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046802.395652   26832 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046802.499830   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046802.501864   26849 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046802.504734   26839 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046802.524722   26843 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046802.631844   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046802.634027   26860 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046802.639686   26854 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046802.656571   26856 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046802.767927   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046802.769789   26871 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046802.772658   26865 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046802.790992   26866 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046802.899964   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046802.902068   26882 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046802.906913   26877 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046802.925110   26878 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046803.031951   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046803.034095   26893 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046803.036839   26889 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046803.058310   26888 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046803.167840   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046803.169600   26904 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046803.173072   26897 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046803.194095   26895 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046803.300382   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046803.302593   26915 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046803.305547   26910 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046803.325035   26908 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046803.435884   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046803.437645   26926 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046803.440746   26918 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046803.457621   26919 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046803.567778   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046803.569975   26937 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046803.573276   26927 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046803.593493   26932 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046803.699863   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046803.701765   26948 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046803.704362   26943 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046803.725814   26942 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046803.836530   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046803.838450   26959 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046803.840927   26951 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046803.861427   26952 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046803.967862   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046803.969762   26970 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046803.975087   26967 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046804.003338   26966 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046804.103983   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046804.106063   26981 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046804.109045   26976 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046804.134886   26975 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046804.235745   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046804.237782   26992 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046804.240747   26987 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046804.252833   26982 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046804.367773   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046804.369519   27003 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046804.375310   26999 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046804.400473   26994 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046804.503831   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046804.505672   27014 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046804.509064   27008 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046804.533509   27006 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046804.636040   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046804.637981   27025 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046804.641332   27021 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046804.658103   27019 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046804.765918   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046804.767432   27036 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046804.770392   27032 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046804.796024   27030 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046804.903972   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046804.906030   27047 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046804.908997   27038 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046804.927873   27037 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046805.038032   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046805.040226   27058 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046805.044175   27052 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046805.065773   27053 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046805.171500   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046805.173594   27069 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046805.176445   27060 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046805.196389   27064 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046805.304463   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046805.306390   27080 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046805.308815   27071 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046805.320630   27074 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046805.442287   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046805.443678   27091 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046805.447507   27088 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046805.471771   27083 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046805.571841   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046805.573747   27102 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046805.576836   27093 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046805.597140   27097 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046805.703835   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046805.705781   27114 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046805.708553   27107 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046805.734252   27104 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046805.839814   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046805.841490   27125 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046805.843790   27118 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046805.869039   27116 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046805.971954   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046805.974111   27136 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046805.979726   27132 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046805.998846   27128 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+I0000 00:00:1761046806.107910   26234 gl_context_egl.cc:85] Successfully initialized EGL. Major : 1 Minor: 5
+I0000 00:00:1761046806.109941   27147 gl_context.cc:369] GL version: 3.2 (OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.3), renderer: AMD Radeon Vega 8 Graphics (raven, LLVM 15.0.7, DRM 3.57, 6.8.0-85-generic)
+W0000 00:00:1761046806.112567   27142 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1761046806.135981   27140 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
