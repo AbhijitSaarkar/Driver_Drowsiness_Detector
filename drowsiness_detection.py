@@ -61,54 +61,13 @@ def show_alert_popup():
         print("Drowsiness Alert: You are sleeping!")
 
 def play_alert_sound():
-    # Try to play the provided WAV file using the best available method.
-    try:
-        if os.path.exists('/home/abhijit/Downloads/mixkit-vintage-warning-alarm-990.wav'):
-            sound_path = '/home/abhijit/Downloads/mixkit-vintage-warning-alarm-990.wav'
-            if platform.system() == "Windows":
-                try:
-                    winsound.PlaySound(sound_path, winsound.SND_FILENAME | winsound.SND_ASYNC)
-                    return
-                except Exception:
-                    pass
-
-            cmds = [
-                ['aplay', sound_path],
-                ['paplay', sound_path],
-                ['ffplay', '-nodisp', '-autoexit', sound_path],
-                ['mpg123', sound_path],
-            ]
-            for cmd in cmds:
-                try:
-                    subprocess.run(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-                    return
-                except FileNotFoundError:
-                    continue
-                except Exception:
-                    continue
-
-        # Fallbacks
-        if platform.system() == "Windows":
-            try:
-                winsound.Beep(2500, 800)
-            except Exception:
-                pass
-        else:
-            try:
-                subprocess.call(['beep'])
-            except Exception:
-                print("ALERT: could not play sound; please install aplay/paplay or ensure SOUND_FILE exists")
-    except Exception as e:
-        print("play_alert_sound error:", e)
+    if platform.system() == "Windows":
+        winsound.Beep(2500, 800)
+    else:
+        subprocess.call(['beep'])
 
 # Log file for drowsiness events
 LOG_FILE = 'drowsiness_log.txt'
-
-# Path to the alert sound file (WAV). Update if needed.
-SOUND_FILE = '/home/abhijit/Downloads/mixkit-vintage-warning-alarm-990.wav'
-
-# avoid spamming the alert while eyes remain closed
-alert_active = False
 
 known_face_encodings = []
 known_face_names = []
@@ -187,12 +146,6 @@ while True:
                         eye_closed_display_seconds = time.time() - closed_start_time
                         status = "Sleeping"
                         color = (0, 0, 255)
-                        # trigger alert when sustained
-                        if closed_eyes_frame_count >= DROWSINESS_FRAMES and not alert_active:
-                            print("ALERT! Driver Drowsiness Detected! (Mediapipe)")
-                            alert_active = True
-                            threading.Thread(target=play_alert_sound, daemon=True).start()
-                            threading.Thread(target=show_alert_popup, daemon=True).start()
                     else:
                         # eyes open
                         if closed_start_time is not None:
@@ -209,8 +162,6 @@ while True:
                             closed_start_time = None
                             closed_eyes_frame_count = 0
                             eye_closed_display_seconds = 0.0
-                        # reset alert state when eyes open
-                        alert_active = False
                         status = "Awake"
                         color = (0, 255, 0)
                     # draw a label at top-left
@@ -237,11 +188,6 @@ while True:
                 eye_closed_display_seconds = time.time() - closed_start_time
                 status = "Sleeping"
                 color = (0, 0, 255)
-                if closed_eyes_frame_count >= DROWSINESS_FRAMES and not alert_active:
-                    print("ALERT! Driver Drowsiness Detected! (Face_recog)")
-                    alert_active = True
-                    threading.Thread(target=play_alert_sound, daemon=True).start()
-                    threading.Thread(target=show_alert_popup, daemon=True).start()
             else:
                 if closed_start_time is not None:
                     duration = time.time() - closed_start_time
@@ -256,7 +202,6 @@ while True:
                     closed_start_time = None
                     closed_eyes_frame_count = 0
                     eye_closed_display_seconds = 0.0
-                    alert_active = False
                 status = "Awake"
                 color = (0, 255, 0)
 
@@ -321,11 +266,10 @@ while True:
                 print(f"[DEBUG] eyes_open -> reset closed_eyes_frame_count (was {closed_eyes_frame_count})")
             closed_eyes_frame_count = 0
 
-        if closed_eyes_frame_count >= DROWSINESS_FRAMES and not alert_active:
+        if closed_eyes_frame_count >= DROWSINESS_FRAMES:
             print("ALERT! Driver Drowsiness Detected! (Haar-eye heuristic)")
-            alert_active = True
-            threading.Thread(target=play_alert_sound, daemon=True).start()
-            threading.Thread(target=show_alert_popup, daemon=True).start()
+            threading.Thread(target=play_alert_sound).start()
+            threading.Thread(target=show_alert_popup).start()
             closed_eyes_frame_count = 0
 
     cv2.imshow("Driver Drowsiness Detection", frame)
@@ -336,6 +280,3 @@ while True:
 video_capture.release()
 cv2.destroyAllWindows()
 print("Program exited successfully.")
-
-
-
