@@ -4,279 +4,475 @@ import os
 import threading
 import time
 from datetime import datetime
+from collections import deque
+import platform
 
+# Optional libraries with graceful fallbacks
 try:
     import tkinter as tk
     from tkinter import messagebox
     USE_TK = True
-except Exception:
-    tk = None
-    messagebox = None
+except:
     USE_TK = False
 
 try:
     import face_recognition
     USE_FACE_RECOG = True
-except ImportError:
-    face_recognition = None
+except:
     USE_FACE_RECOG = False
 
-# Try mediapipe for robust landmark detection if available
 try:
     import mediapipe as mp
     USE_MEDIAPIPE = True
     mp_face_mesh = mp.solutions.face_mesh
-except Exception:
-    mp = None
+    mp_drawing = mp.solutions.drawing_utils
+except:
     USE_MEDIAPIPE = False
 
-import platform
-if platform.system() == "Windows":
-    import winsound
-else:
-    import subprocess
+# USB Relay Control (Windows)
+try:
+    if platform.system() == "Windows":
+        import winsound
+        import serial
+        USE_USB_RELAY = True
+    else:
+        import subprocess
+        USE_USB_RELAY = False
+except:
+    USE_USB_RELAY = False
 
+# ==================== CONFIGURATION ====================
+# Camera settings
+CAMERA_INDEX = 0
+FRAME_WIDTH = 640
+FRAME_HEIGHT = 480
+
+# Detection thresholds (research-validated)
+EAR_THRESHOLD = 0.21           # Eye Aspect Ratio for closed eyes
+MAR_THRESHOLD = 0.5            # Mouth Aspect Ratio for yawning
+HEAD_TILT_THRESHOLD = 20       # Degrees for abnormal head pose
+BLINK_FRAMES = 3               # Max frames for normal blink
+DROWSINESS_FRAMES = 18         # ~0.6 seconds at 30fps (increased for accuracy)
+YAWN_FRAMES = 20               # Consecutive frames for yawn detection
+PERCLOS_WINDOW = 180           # 6-second rolling window for PERCLOS
+
+# Alert settings
+SOUND_FILE = '/home/abhijit/Downloads/mixkit-vintage-warning-alarm-990.wav'
+LOG_FILE = 'drowsiness_log.txt'
+USB_PORT = 'COM3'              # Update to your USB relay port (Windows: COM3, Linux: /dev/ttyUSB0)
+USB_BAUD_RATE = 9600
+
+# ==================== USB RELAY CONTROLLER ====================
+class USBRelayController:
+    """Controls USB relay module for alert light"""
+    def __init__(self, port=USB_PORT, baud_rate=USB_BAUD_RATE):
+        self.relay_active = False
+        self.serial_conn = None
+        if USE_USB_RELAY:
+            try:
+                import serial
+                self.serial_conn = serial.Serial(port, baud_rate, timeout=1)
+                time.sleep(2)  # Wait for connection
+                print(f"USB Relay connected on {port}")
+            except Exception as e:
+                print(f"USB Relay connection failed: {e}")
+                self.serial_conn = None
+    
+    def turn_on(self):
+        """Turn on relay (light on)"""
+        if self.serial_conn and not self.relay_active:
+            try:
+                # Command format varies by relay model
+                # Common: 'A01' for channel 1 ON (update for your relay)
+                self.serial_conn.write(b'A01')
+                self.relay_active = True
+                print("[RELAY] Light ON")
+            except Exception as e:
+                print(f"Relay ON error: {e}")
+    
+    def turn_off(self):
+        """Turn off relay (light off)"""
+        if self.serial_conn and self.relay_active:
+            try:
+                # Command: 'A00' for channel 1 OFF (update for your relay)
+                self.serial_conn.write(b'A00')
+                self.relay_active = False
+                print("[RELAY] Light OFF")
+            except Exception as e:
+                print(f"Relay OFF error: {e}")
+    
+    def close(self):
+        """Cleanup connection"""
+        if self.serial_conn:
+            self.turn_off()
+            self.serial_conn.close()
+
+# ==================== SOUND ALERT CONTROLLER ====================
+class SoundAlertController:
+    """Manages sound alerts with proper start/stop control"""
+    def __init__(self, sound_file=SOUND_FILE):
+        self.sound_file = sound_file
+        self.is_playing = False
+        self.stop_flag = threading.Event()
+        self.play_thread = None
+    
+    def play(self):
+        """Start playing alert sound in loop"""
+        if not self.is_playing:
+            self.is_playing = True
+            self.stop_flag.clear()
+            self.play_thread = threading.Thread(target=self._play_loop, daemon=True)
+            self.play_thread.start()
+            print("[SOUND] Alert started")
+    
+    def stop(self):
+        """Stop playing alert sound"""
+        if self.is_playing:
+            self.is_playing = False
+            self.stop_flag.set()
+            if platform.system() == "Windows":
+                # Stop Windows sound
+                try:
+                    winsound.PlaySound(None, winsound.SND_PURGE)
+                except:
+                    pass
+            print("[SOUND] Alert stopped")
+    
+    def _play_loop(self):
+        """Internal loop to repeat sound until stopped"""
+        while not self.stop_flag.is_set():
+            try:
+                if os.path.exists(self.sound_file):
+                    if platform.system() == "Windows":
+                        winsound.PlaySound(self.sound_file, winsound.SND_FILENAME)
+                    else:
+                        subprocess.run(['aplay', self.sound_file], 
+                                     stdout=subprocess.DEVNULL, 
+                                     stderr=subprocess.DEVNULL)
+                else:
+                    # Fallback beep
+                    if platform.system() == "Windows":
+                        winsound.Beep(2500, 500)
+                time.sleep(0.1)  # Short pause between loops
+            except Exception as e:
+                print(f"Sound playback error: {e}")
+                break
+
+# ==================== CALCULATION FUNCTIONS ====================
 def eye_aspect_ratio(eye):
+    """Calculate Eye Aspect Ratio (EAR)"""
     A = np.linalg.norm(eye[1] - eye[5])
     B = np.linalg.norm(eye[2] - eye[4])
     C = np.linalg.norm(eye[0] - eye[3])
-    return (A + B) / (2.0 * C)
+    ear = (A + B) / (2.0 * C + 1e-6)
+    return ear
 
-DROWSINESS_FRAMES = 15
-EAR_THRESHOLD = 0.23
-CAMERA_INDEX = 0
-EAR_MEDIAPIPE_THRESHOLD = 0.23
+def mouth_aspect_ratio(mouth):
+    """Calculate Mouth Aspect Ratio (MAR) for yawn detection"""
+    A = np.linalg.norm(mouth[2] - mouth[10])  # Vertical distance 1
+    B = np.linalg.norm(mouth[4] - mouth[8])   # Vertical distance 2
+    C = np.linalg.norm(mouth[0] - mouth[6])   # Horizontal distance
+    mar = (A + B) / (2.0 * C + 1e-6)
+    return mar
 
+def calculate_head_pose(landmarks, frame_shape):
+    """Calculate head pose angles (pitch, yaw, roll)"""
+    h, w = frame_shape[:2]
+    
+    # 3D model points (generic human head)
+    model_points = np.array([
+        (0.0, 0.0, 0.0),             # Nose tip
+        (0.0, -330.0, -65.0),        # Chin
+        (-225.0, 170.0, -135.0),     # Left eye corner
+        (225.0, 170.0, -135.0),      # Right eye corner
+        (-150.0, -150.0, -125.0),    # Left mouth corner
+        (150.0, -150.0, -125.0)      # Right mouth corner
+    ])
+    
+    # Camera internals
+    focal_length = w
+    center = (w/2, h/2)
+    camera_matrix = np.array([
+        [focal_length, 0, center[0]],
+        [0, focal_length, center[1]],
+        [0, 0, 1]
+    ], dtype=np.float64)
+    
+    dist_coeffs = np.zeros((4,1))
+    
+    # 2D image points from landmarks
+    image_points = np.array(landmarks, dtype=np.float64)
+    
+    # Solve PnP
+    success, rotation_vec, translation_vec = cv2.solvePnP(
+        model_points, image_points, camera_matrix, dist_coeffs
+    )
+    
+    # Convert rotation vector to angles
+    rotation_mat, _ = cv2.Rodrigues(rotation_vec)
+    pose_mat = cv2.hconcat((rotation_mat, translation_vec))
+    _, _, _, _, _, _, euler_angles = cv2.decomposeProjectionMatrix(pose_mat)
+    
+    pitch, yaw, roll = euler_angles.flatten()[:3]
+    return pitch, yaw, roll
+
+def calculate_perclos(eye_states, window_size=PERCLOS_WINDOW):
+    """Calculate PERCLOS (Percentage of Eye Closure)"""
+    if len(eye_states) < window_size:
+        return 0.0
+    recent_states = list(eye_states)[-window_size:]
+    closed_count = sum(1 for state in recent_states if state)
+    perclos = (closed_count / window_size) * 100
+    return perclos
+
+# ==================== MAIN DETECTION SYSTEM ====================
 def show_alert_popup():
-    if USE_TK and tk and messagebox:
+    """Show warning popup"""
+    if USE_TK:
         root = tk.Tk()
         root.withdraw()
         try:
-            messagebox.showwarning("Drowsiness Alert", "You are sleeping!")
-        except Exception:
-            print("Drowsiness Alert: You are sleeping!")
+            messagebox.showwarning("⚠️ DROWSINESS ALERT", 
+                                 "WAKE UP! You are showing signs of drowsiness!")
+        except:
+            print("DROWSINESS ALERT!")
         finally:
             root.destroy()
-    else:
-        print("Drowsiness Alert: You are sleeping!")
 
-def play_alert_sound():
-    if platform.system() == "Windows":
-        winsound.Beep(2500, 800)
-    else:
-        subprocess.call(['beep'])
-
-# Log file for drowsiness events
-LOG_FILE = 'drowsiness_log.txt'
-
-known_face_encodings = []
-known_face_names = []
-if USE_FACE_RECOG:
-    try:
-        img_image = face_recognition.load_image_file('img.jpg')
-        img_face_encoding = face_recognition.face_encodings(img_image)[0]
-        known_face_encodings = [img_face_encoding]
-        known_face_names = ['Authorized Driver']
-    except Exception:
-        print("Could not load face or no face found in img.jpg. Skipping authentication.")
-else:
-    haar_path = cv2.data.haarcascades + 'haarcascade_frontalface_default.xml'
-    face_cascade = cv2.CascadeClassifier(haar_path)
-    # prepare eye cascade for fallback eye detection
-    eye_cascade_path = cv2.data.haarcascades + 'haarcascade_eye.xml'
-    if os.path.exists(eye_cascade_path):
-        eye_cascade = cv2.CascadeClassifier(eye_cascade_path)
-    else:
-        eye_cascade = None
-
-video_capture = cv2.VideoCapture(CAMERA_INDEX)
-if not video_capture.isOpened():
-    print("Cannot open camera")
-    exit()
-
-closed_eyes_frame_count = 0
-closed_start_time = None
-eye_closed_display_seconds = 0.0
-
-while True:
-    ret, frame = video_capture.read()
-    if not ret:
-        print("Failed to grab frame")
-        break
-
-    small_frame = cv2.resize(frame, (0, 0), fx=0.25, fy=0.25)
-    rgb_small_frame = small_frame[:, :, ::-1]
-
-    # Default values in case no face detected
-    status = "No Face"
-    color = (0, 255, 255)
-    face_locations = []
-    face_landmarks_list = []
-
-    # Prefer Mediapipe landmarks if available
+def main():
+    # Initialize controllers
+    sound_controller = SoundAlertController()
+    relay_controller = USBRelayController()
+    
+    # Initialize video capture
+    video_capture = cv2.VideoCapture(CAMERA_INDEX)
+    video_capture.set(cv2.CAP_PROP_FRAME_WIDTH, FRAME_WIDTH)
+    video_capture.set(cv2.CAP_PROP_FRAME_HEIGHT, FRAME_HEIGHT)
+    
+    if not video_capture.isOpened():
+        print("ERROR: Cannot open camera")
+        return
+    
+    # Initialize face detection
+    face_mesh = None
     if USE_MEDIAPIPE:
-        # Mediapipe expects RGB images
-        with mp_face_mesh.FaceMesh(static_image_mode=False, max_num_faces=1, refine_landmarks=True) as face_mesh:
-            results = face_mesh.process(rgb_small_frame)
-            if results.multi_face_landmarks:
-                for face_landmarks in results.multi_face_landmarks:
-                    # extract 6 landmarks per eye for EAR using common indices
-                    # left eye indices (Mediapipe): [33, 160, 158, 133, 153, 144]
-                    # right eye indices: [263, 387, 385, 362, 380, 373]
-                    h, w, _ = rgb_small_frame.shape
-                    def lm_point(idx):
-                        lm = face_landmarks.landmark[idx]
-                        return np.array([lm.x * w, lm.y * h])
-
-                    left_pts = np.array([lm_point(i) for i in [33, 160, 158, 133, 153, 144]])
-                    right_pts = np.array([lm_point(i) for i in [263, 387, 385, 362, 380, 373]])
-
-                    left_EAR = eye_aspect_ratio(left_pts)
-                    right_EAR = eye_aspect_ratio(right_pts)
-                    avg_EAR = (left_EAR + right_EAR) / 2.0
-
-                    # Debug print
-                    print(f"[MEDIAPIPE] avg_EAR={avg_EAR:.3f}")
-
-                    if avg_EAR < EAR_MEDIAPIPE_THRESHOLD:
-                        # eyes considered closed
+        try:
+            face_mesh = mp_face_mesh.FaceMesh(
+                static_image_mode=False,
+                max_num_faces=1,
+                refine_landmarks=True,
+                min_detection_confidence=0.5,
+                min_tracking_confidence=0.5
+            )
+            print("Using MediaPipe for detection")
+        except Exception as e:
+            print(f"MediaPipe init failed: {e}")
+    
+    # State tracking variables
+    closed_eyes_frame_count = 0
+    yawn_frame_count = 0
+    closed_start_time = None
+    alert_active = False
+    eye_state_history = deque(maxlen=PERCLOS_WINDOW)
+    
+    # Statistics
+    total_drowsy_events = 0
+    total_yawns = 0
+    
+    print("\n=== Driver Drowsiness Detection System Active ===")
+    print("Press 'q' to quit\n")
+    
+    try:
+        while True:
+            ret, frame = video_capture.read()
+            if not ret:
+                print("Warning: Failed to grab frame")
+                time.sleep(0.1)
+                continue
+            
+            # Flip frame for mirror effect
+            frame = cv2.flip(frame, 1)
+            rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+            h, w = frame.shape[:2]
+            
+            # Default state
+            status = "Monitoring..."
+            color = (0, 255, 255)  # Yellow
+            ear_value = 0.0
+            mar_value = 0.0
+            head_tilt = 0.0
+            perclos = 0.0
+            
+            # Detection using MediaPipe
+            if face_mesh is not None:
+                results = face_mesh.process(rgb_frame)
+                
+                if results.multi_face_landmarks:
+                    face_landmarks = results.multi_face_landmarks[0]
+                    
+                    # Extract landmark coordinates
+                    landmarks_coords = []
+                    for lm in face_landmarks.landmark:
+                        landmarks_coords.append([lm.x * w, lm.y * h])
+                    landmarks_np = np.array(landmarks_coords)
+                    
+                    # ===== EYE ASPECT RATIO (EAR) =====
+                    # Left eye indices: 33, 160, 158, 133, 153, 144
+                    left_eye = landmarks_np[[33, 160, 158, 133, 153, 144]]
+                    # Right eye indices: 263, 387, 385, 362, 380, 373
+                    right_eye = landmarks_np[[263, 387, 385, 362, 380, 373]]
+                    
+                    left_ear = eye_aspect_ratio(left_eye)
+                    right_ear = eye_aspect_ratio(right_eye)
+                    ear_value = (left_ear + right_ear) / 2.0
+                    
+                    # ===== MOUTH ASPECT RATIO (MAR) =====
+                    # Mouth indices: 61, 146, 91, 181, 84, 17, 314, 405, 321, 375, 291, 308
+                    mouth_points = landmarks_np[[61, 146, 91, 181, 84, 17, 314, 405, 321, 375, 291, 308]]
+                    mar_value = mouth_aspect_ratio(mouth_points)
+                    
+                    # ===== HEAD POSE ESTIMATION =====
+                    try:
+                        # Key points for pose: nose, chin, left eye, right eye, left mouth, right mouth
+                        pose_points = [
+                            landmarks_coords[1],    # Nose tip
+                            landmarks_coords[152],  # Chin
+                            landmarks_coords[33],   # Left eye corner
+                            landmarks_coords[263],  # Right eye corner
+                            landmarks_coords[61],   # Left mouth corner
+                            landmarks_coords[291]   # Right mouth corner
+                        ]
+                        pitch, yaw, roll = calculate_head_pose(pose_points, frame.shape)
+                        head_tilt = abs(pitch)
+                    except:
+                        head_tilt = 0.0
+                    
+                    # ===== DROWSINESS DETECTION LOGIC =====
+                    eyes_closed = ear_value < EAR_THRESHOLD
+                    is_yawning = mar_value > MAR_THRESHOLD
+                    head_nodding = head_tilt > HEAD_TILT_THRESHOLD
+                    
+                    # Track eye state for PERCLOS
+                    eye_state_history.append(eyes_closed)
+                    perclos = calculate_perclos(eye_state_history)
+                    
+                    # Eyes closed detection
+                    if eyes_closed:
                         if closed_start_time is None:
                             closed_start_time = time.time()
                         closed_eyes_frame_count += 1
-                        eye_closed_display_seconds = time.time() - closed_start_time
-                        status = "Sleeping"
-                        color = (0, 0, 255)
+                        
+                        # Check if it's actual drowsiness (not just blinking)
+                        if closed_eyes_frame_count >= DROWSINESS_FRAMES:
+                            status = "⚠️ DROWSINESS DETECTED!"
+                            color = (0, 0, 255)  # Red
+                            
+                            if not alert_active:
+                                alert_active = True
+                                total_drowsy_events += 1
+                                print(f"\n[ALERT] Drowsiness detected! EAR={ear_value:.3f}, PERCLOS={perclos:.1f}%")
+                                
+                                # Trigger all alerts
+                                sound_controller.play()
+                                relay_controller.turn_on()
+                                threading.Thread(target=show_alert_popup, daemon=True).start()
+                        else:
+                            status = f"Eyes Closing... ({closed_eyes_frame_count}/{DROWSINESS_FRAMES})"
+                            color = (0, 165, 255)  # Orange
+                    
                     else:
-                        # eyes open
+                        # Eyes are open - STOP ALERTS
                         if closed_start_time is not None:
-                            # compute duration and log it
                             duration = time.time() - closed_start_time
-                            ts = datetime.now().isoformat(sep=' ', timespec='seconds')
-                            entry = f"{ts} - Eyes closed for {duration:.2f} seconds\n"
-                            try:
-                                with open(LOG_FILE, 'a') as f:
-                                    f.write(entry)
-                                print(f"[LOG] {entry.strip()}")
-                            except Exception as e:
-                                print("Failed to write log:", e)
+                            if duration > 0.5:  # Only log if eyes were closed >0.5s
+                                ts = datetime.now().isoformat(sep=' ', timespec='seconds')
+                                entry = f"{ts} - Eyes closed for {duration:.2f}s, PERCLOS: {perclos:.1f}%\n"
+                                try:
+                                    with open(LOG_FILE, 'a') as f:
+                                        f.write(entry)
+                                    print(f"[LOG] {entry.strip()}")
+                                except Exception as e:
+                                    print(f"Log error: {e}")
+                            
                             closed_start_time = None
                             closed_eyes_frame_count = 0
-                            eye_closed_display_seconds = 0.0
+                        
+                        # Stop all alerts when eyes reopen
+                        if alert_active:
+                            alert_active = False
+                            sound_controller.stop()
+                            relay_controller.turn_off()
+                            print("[SYSTEM] Driver alert - alerts stopped")
+                        
                         status = "Awake"
-                        color = (0, 255, 0)
-                    # draw a label at top-left
-                    cv2.putText(frame, status, (20, 40), cv2.FONT_HERSHEY_SIMPLEX, 1.2, color, 3)
-    elif USE_FACE_RECOG:
-        face_locations = face_recognition.face_locations(rgb_small_frame)
-        face_landmarks_list = face_recognition.face_landmarks(rgb_small_frame, face_locations)
+                        color = (0, 255, 0)  # Green
+                    
+                    # ===== YAWN DETECTION =====
+                    if is_yawning:
+                        yawn_frame_count += 1
+                        if yawn_frame_count >= YAWN_FRAMES:
+                            status += " + YAWNING"
+                            color = (0, 140, 255)  # Dark orange
+                            if yawn_frame_count == YAWN_FRAMES:
+                                total_yawns += 1
+                                print(f"[YAWN] Detected! MAR={mar_value:.3f}")
+                    else:
+                        yawn_frame_count = 0
+                    
+                    # ===== HEAD NODDING DETECTION =====
+                    if head_nodding and not eyes_closed:
+                        status += " + HEAD NODDING"
+                        print(f"[HEAD] Abnormal pose detected: {head_tilt:.1f}°")
+            
+            # ===== DISPLAY OVERLAY =====
+            # Status banner
+            cv2.rectangle(frame, (0, 0), (w, 60), (0, 0, 0), -1)
+            cv2.putText(frame, status, (10, 40), 
+                       cv2.FONT_HERSHEY_SIMPLEX, 1.0, color, 2)
+            
+            # Metrics panel
+            metrics_y = 80
+            cv2.putText(frame, f"EAR: {ear_value:.3f}", (10, metrics_y),
+                       cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
+            cv2.putText(frame, f"MAR: {mar_value:.3f}", (10, metrics_y + 25),
+                       cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
+            cv2.putText(frame, f"PERCLOS: {perclos:.1f}%", (10, metrics_y + 50),
+                       cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
+            cv2.putText(frame, f"Head: {head_tilt:.1f}deg", (10, metrics_y + 75),
+                       cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
+            
+            # Statistics
+            cv2.putText(frame, f"Drowsy Events: {total_drowsy_events}", (10, h - 40),
+                       cv2.FONT_HERSHEY_SIMPLEX, 0.5, (200, 200, 200), 1)
+            cv2.putText(frame, f"Yawns: {total_yawns}", (10, h - 15),
+                       cv2.FONT_HERSHEY_SIMPLEX, 0.5, (200, 200, 200), 1)
+            
+            # Alert indicator
+            if alert_active:
+                cv2.rectangle(frame, (w-150, 10), (w-10, 50), (0, 0, 255), -1)
+                cv2.putText(frame, "ALERT!", (w-135, 35),
+                           cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255, 255, 255), 2)
+            
+            cv2.imshow("Driver Drowsiness Detection System", frame)
+            
+            # Exit on 'q' key
+            if cv2.waitKey(1) & 0xFF == ord('q'):
+                break
+    
+    except KeyboardInterrupt:
+        print('\n[EXIT] Interrupted by user')
+    
+    finally:
+        # Cleanup
+        print("\n[CLEANUP] Shutting down...")
+        sound_controller.stop()
+        relay_controller.close()
+        video_capture.release()
+        cv2.destroyAllWindows()
+        if face_mesh:
+            face_mesh.close()
+        print("[EXIT] System stopped successfully")
+        print(f"\nSession Stats - Drowsy Events: {total_drowsy_events}, Yawns: {total_yawns}")
 
-        for loc, landmarks in zip(face_locations, face_landmarks_list):
-            left_eye_pts = np.array([landmarks['left_eye'][i] for i in range(6)])
-            right_eye_pts = np.array([landmarks['right_eye'][i] for i in range(6)])
-
-            left_EAR = eye_aspect_ratio(left_eye_pts)
-            right_EAR = eye_aspect_ratio(right_eye_pts)
-            avg_EAR = (left_EAR + right_EAR) / 2.0
-
-            # Print EAR for debugging
-            print(f"[FACE_RECOG] avg_EAR={avg_EAR:.3f}")
-
-            if avg_EAR < EAR_THRESHOLD:
-                if closed_start_time is None:
-                    closed_start_time = time.time()
-                closed_eyes_frame_count += 1
-                eye_closed_display_seconds = time.time() - closed_start_time
-                status = "Sleeping"
-                color = (0, 0, 255)
-            else:
-                if closed_start_time is not None:
-                    duration = time.time() - closed_start_time
-                    ts = datetime.now().isoformat(sep=' ', timespec='seconds')
-                    entry = f"{ts} - Eyes closed for {duration:.2f} seconds\n"
-                    try:
-                        with open(LOG_FILE, 'a') as f:
-                            f.write(entry)
-                        print(f"[LOG] {entry.strip()}")
-                    except Exception as e:
-                        print("Failed to write log:", e)
-                    closed_start_time = None
-                    closed_eyes_frame_count = 0
-                    eye_closed_display_seconds = 0.0
-                status = "Awake"
-                color = (0, 255, 0)
-
-            # Draw box and status label
-            top, right, bottom, left = loc
-            top *= 4; right *= 4; bottom *= 4; left *= 4
-            cv2.rectangle(frame, (left, top), (right, bottom), color, 2)
-            cv2.rectangle(frame, (left, top - 40), (right, top), color, -1)
-            cv2.putText(frame, status, (left + 10, top - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,255,255), 2)
-    else:
-        gray = cv2.cvtColor(rgb_small_frame, cv2.COLOR_RGB2GRAY)
-        faces = face_cascade.detectMultiScale(gray, 1.1, 5)
-        # fallback: draw yellow box for detected face
-        for (x, y, w, h) in faces:
-            top, right, bottom, left = y, x + w, y + h, x
-            top *= 4; right *= 4; bottom *= 4; left *= 4
-            cv2.rectangle(frame, (left, top), (right, bottom), (0, 255, 255), 2)
-            cv2.rectangle(frame, (left, top - 40), (right, top), (0, 255, 255), -1)
-            cv2.putText(frame, "Face", (left + 10, top - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,0,0), 2)
-
-    # Heuristic eye detection using Haar cascade inside face ROI
-        eyes_closed_in_frame = 0
-        if eye_cascade is not None and len(faces) > 0:
-            print(f"[DEBUG] Faces detected: {len(faces)}")
-            for fi, (x, y, w, h) in enumerate(faces):
-                # small_frame coordinates already used for detection; focus on face ROI
-                roi_gray = gray[y:y+h, x:x+w]
-                if roi_gray.size == 0:
-                    print(f"[DEBUG] Face {fi}: empty ROI_gray, skipping")
-                    continue
-                detected_eyes = eye_cascade.detectMultiScale(roi_gray, scaleFactor=1.1, minNeighbors=3, minSize=(10, 10))
-                print(f"[DEBUG] Face {fi}: detected_eyes_count={len(detected_eyes)}")
-                # For each detected eye, compute height/width ratio; closed eyes typically have smaller height
-                for eji, (ex, ey, ew, eh) in enumerate(detected_eyes):
-                    ar = float(eh) / float(ew) if ew > 0 else 0.0
-                    print(f"[DEBUG] Face {fi} Eye {eji}: ew={ew}, eh={eh}, AR={ar:.3f}")
-                    # consider eye closed when ar is small (tuned for small_frame)
-                    if ar < 0.22:
-                        eyes_closed_in_frame += 1
-
-        # Update closed-eye consecutive frame counter
-        if eyes_closed_in_frame >= 1:
-            if closed_start_time is None:
-                closed_start_time = time.time()
-            closed_eyes_frame_count += 1
-            eye_closed_display_seconds = time.time() - closed_start_time
-            print(f"[DEBUG] eyes_closed_in_frame={eyes_closed_in_frame}, closed_eyes_frame_count={closed_eyes_frame_count}, closed_secs={eye_closed_display_seconds:.2f}")
-        else:
-            if closed_start_time is not None:
-                # log event
-                duration = time.time() - closed_start_time
-                ts = datetime.now().isoformat(sep=' ', timespec='seconds')
-                entry = f"{ts} - Eyes closed for {duration:.2f} seconds\n"
-                try:
-                    with open(LOG_FILE, 'a') as f:
-                        f.write(entry)
-                    print(f"[LOG] {entry.strip()}")
-                except Exception as e:
-                    print("Failed to write log:", e)
-                closed_start_time = None
-            if closed_eyes_frame_count != 0:
-                print(f"[DEBUG] eyes_open -> reset closed_eyes_frame_count (was {closed_eyes_frame_count})")
-            closed_eyes_frame_count = 0
-
-        if closed_eyes_frame_count >= DROWSINESS_FRAMES:
-            print("ALERT! Driver Drowsiness Detected! (Haar-eye heuristic)")
-            threading.Thread(target=play_alert_sound).start()
-            threading.Thread(target=show_alert_popup).start()
-            closed_eyes_frame_count = 0
-
-    cv2.imshow("Driver Drowsiness Detection", frame)
-
-    if cv2.waitKey(1) & 0xFF == ord("q"):
-        break
-
-video_capture.release()
-cv2.destroyAllWindows()
-print("Program exited successfully.")
+if __name__ == "__main__":
+    main()
