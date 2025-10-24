@@ -71,8 +71,13 @@ USB_PORT = 'COM3'
 USB_BAUD_RATE = 9600
 
 # WhatsApp Configuration
-TWILIO_ACCOUNT_SID = 'REDACTED_TWILIO_SID'
-TWILIO_AUTH_TOKEN = 'REDACTED_TWILIO_AUTH'
+import os
+
+# It's safer to load Twilio credentials from environment variables so secrets
+# are not stored in the repository. Set these in your shell or in a `.env`
+# file loaded by your runtime environment.
+TWILIO_ACCOUNT_SID = os.getenv('TWILIO_ACCOUNT_SID', 'REDACTED_TWILIO_SID')
+TWILIO_AUTH_TOKEN = os.getenv('TWILIO_AUTH_TOKEN', 'REDACTED_TWILIO_AUTH')
 TWILIO_WHATSAPP_FROM = 'whatsapp:+14155238886'
 DRIVER_WHATSAPP_NUMBER = 'whatsapp:+917001511540'
 WHATSAPP_COOLDOWN_SECONDS = 120
