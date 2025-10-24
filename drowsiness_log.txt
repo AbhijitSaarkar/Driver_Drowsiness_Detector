@@ -370,3 +370,13 @@
 2025-10-24 12:37:04 - Eyes closed for 0.54s, PERCLOS: 0.0%
 2025-10-24 12:37:08 - WhatsApp alert sent (EAR=0.158, PERCLOS=0.0%, Events=3, Yawns=1)
 2025-10-24 12:37:11 - Eyes closed for 5.88s, PERCLOS: 74.4%
+2025-10-24 12:47:54 - Eyes closed for 0.65s, PERCLOS: 0.0%
+2025-10-24 12:47:57 - Eyes closed for 2.94s, PERCLOS: 0.0%
+2025-10-24 12:47:58 - WhatsApp alert sent (EAR=0.070, PERCLOS=0.0%, Events=1, Yawns=1)
+2025-10-24 12:48:01 - WhatsApp alert sent (EAR=0.163, PERCLOS=0.0%, Events=2, Yawns=1)
+2025-10-24 12:48:02 - Eyes closed for 4.14s, PERCLOS: 0.0%
+2025-10-24 12:48:03 - Eyes closed for 1.33s, PERCLOS: 0.0%
+2025-10-24 12:48:07 - Eyes closed for 2.81s, PERCLOS: 0.0%
+2025-10-24 12:48:07 - WhatsApp alert sent (EAR=0.166, PERCLOS=0.0%, Events=3, Yawns=1)
+2025-10-24 12:48:11 - WhatsApp alert sent (EAR=0.083, PERCLOS=0.0%, Events=4, Yawns=1)
+2025-10-24 12:48:11 - Eyes closed for 3.74s, PERCLOS: 0.0%
