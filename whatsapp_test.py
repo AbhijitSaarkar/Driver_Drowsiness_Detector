@@ -3,8 +3,11 @@ import traceback
 from datetime import datetime
 
 # Copy your Twilio config from the main script
-TWILIO_ACCOUNT_SID = 'REDACTED_TWILIO_SID'
-TWILIO_AUTH_TOKEN = 'REDACTED_TWILIO_AUTH'
+import os
+
+# Load Twilio credentials from environment (recommended)
+TWILIO_ACCOUNT_SID = os.getenv('TWILIO_ACCOUNT_SID', 'REDACTED_TWILIO_SID')
+TWILIO_AUTH_TOKEN = os.getenv('TWILIO_AUTH_TOKEN', 'REDACTED_TWILIO_AUTH')
 TWILIO_WHATSAPP_FROM = 'whatsapp:+14155238886'
 DRIVER_WHATSAPP_NUMBER = 'whatsapp:+917001511540'
 
